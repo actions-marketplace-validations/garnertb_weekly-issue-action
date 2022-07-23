@@ -12,6 +12,16 @@ inputs:
     description: Date string used to add the date to the title of the issue
     default: this friday
     required: true
+  title:
+    default: 'Weekly issue for week of '
+  labels:
+    default: 'weekly-sync'
+    required: false
+  body:
+    default: "Weekly sync issue for the week of ${{outputs.sdfsdf }}"
+  assignees: 
+    description: Assignees for the issue
+    required: false
   token: 
     description: GitHub token
     required: true
@@ -23,16 +33,6 @@ outputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v2
-      with:
-        repository: ${{ github.repository }}
-        fetch-depth: 1
-    
-    - uses: imjohnbo/extract-issue-template-fields@v1
-      id: extract
-      with:
-        path: ${{inputs.issue_template}}
-    
     - name: get date
       id: date
       run: |
@@ -40,7 +40,7 @@ runs:
 
     - uses: imjohnbo/issue-bot@v3
       with:
-        assignees: ${{ steps.extract.outputs.assignees }}
+        assignees: ${{ input.assignees }}
         labels: ${{ steps.extract.outputs.labels }}
         title: ${{ steps.extract.outputs.title }} for week of ${{ steps.date.outputs.date }}
         body: ${{ steps.extract.outputs.body }}
