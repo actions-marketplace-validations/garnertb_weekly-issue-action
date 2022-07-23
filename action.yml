@@ -1,0 +1,51 @@
+---
+name: Create weekly action
+description: Action that creates a consistent issue on different dates.
+branding:
+  icon: 'users'  
+  color: 'yellow'
+inputs:
+  issue_template:
+    description: Path to the issue template
+    required: true
+  date_string:
+    description: Date string used to add the date to the title of the issue
+    default: this friday
+    required: true
+  token: 
+    description: GitHub token
+    required: true
+    default: ${{ github.token }}
+outputs:
+  members:
+    description: GitHub logins of team members
+    value: ${{ steps.members.outputs.members }}
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ github.repository }}
+        fetch-depth: 1
+    
+    - uses: imjohnbo/extract-issue-template-fields@v1
+      id: extract
+      with:
+        path: ${{inputs.issue_template}}
+    
+    - name: get date
+      id: date
+      run: |
+        echo "::set-output name=date::$(date -d ${{inputs.date_string}} +"%m/%d/%Y")"
+
+    - uses: imjohnbo/issue-bot@v3
+      with:
+        assignees: ${{ steps.extract.outputs.assignees }}
+        labels: ${{ steps.extract.outputs.labels }}
+        title: ${{ steps.extract.outputs.title }} for week of ${{ steps.date.outputs.date }}
+        body: ${{ steps.extract.outputs.body }}
+        pinned: true
+        close-previous: false
+        linked-comments: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
