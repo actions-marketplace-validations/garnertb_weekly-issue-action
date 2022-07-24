@@ -2,8 +2,8 @@
 name: Create weekly action
 description: Action that creates a consistent issue on different dates.
 branding:
-  icon: 'users'  
-  color: 'yellow'
+  icon: 'check-square'  
+  color: 'blue'
 inputs:
   assignees: 
     description: Assignees for the issue
@@ -17,18 +17,18 @@ inputs:
     required: false
   
   close-previous:
-    default: true
+    default: false
     description: Whether to close the previous weekly issue when creating new one
   
   date-string:
     description: Date string used to add the date to the title of the issue
     default: "this friday"
-    required: true
+    required: false
   
   date-string-format:
     description: The format passed to the date command
     default: "%m/%d/%Y"
-    required: true
+    required: false
   
   title:
     default: 'Weekly issue for week of '
@@ -66,6 +66,7 @@ inputs:
   project:
     description: |-
       Project number (not ID or name) to add issue to, e.g. 2.
+    required: false
   
   pinned: 
     default: true
@@ -80,7 +81,7 @@ inputs:
       required: false
   token: 
     description: GitHub token
-    required: true
+    required: false
     default: ${{ github.token }}
   
   project-type:
