@@ -42,15 +42,16 @@ runs:
   steps:
     - name: get date
       id: date
+      shell: /bin/bash
       run: |
         echo "::set-output name=date::$(date -d ${{inputs.date_string}} +"%m/%d/%Y")"
     - uses: imjohnbo/issue-bot@v3
       with:
-        assignees: ${{ input.assignees }}
-        labels: ${{ input.labels }}
+        assignees: ${{ inputs.assignees }}
+        labels: ${{ inputs.labels }}
         title: ${{ inputs.title }} for week of ${{ steps.date.outputs.date }}
         body: ${{ inputs.body }}
         pinned: ${{ inputs.pinned }}
         close-previous: ${{ inputs.close_previous }}
         linked-comments: ${{ inputs.linked=comments }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ inputs.token }}
