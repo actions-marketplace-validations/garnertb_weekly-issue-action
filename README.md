@@ -3,6 +3,9 @@
 Action that creates consistent GitHub issues on different dates.  Great for standardizing project management,
 scrum ceremonies, and other recurring tasks.
 
+> **warning**
+> This is a work in progress.
+
 ## Usage
 
 ```yaml
