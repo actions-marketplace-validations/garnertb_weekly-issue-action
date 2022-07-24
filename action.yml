@@ -5,34 +5,86 @@ branding:
   icon: 'users'  
   color: 'yellow'
 inputs:
+  assignees: 
+    description: Assignees for the issue
+    required: false
+  
+  body:
+    default: "Weekly sync issue"
+    description: |-
+      Project column name to add issue to, e.g. To Do.
+      Required if "project" is set.
+    required: false
+  
+  close-previous:
+    default: true
+    description: Whether to close the previous weekly issue when creating new one
+  
   date-string:
     description: Date string used to add the date to the title of the issue
     default: "this friday"
     required: true
+  
   title:
     default: 'Weekly issue for week of '
     required: false
+  
   labels:
     default: 'weekly-sync'
-    required: false
-  body:
-    default: "Weekly sync issue"
-  pinned: 
-    default: true
-    description: Whether the issue should be pinned.
-  close-previous:
-    default: true
-    description: Whether to close the previous weekly issue when creating new one
+    description: |-
+      Comma delimited list of existing issue labels to be applied to new issue, e.g. "bug, ci".
+    required: false  
+  
   linked-comments:
     default: true
     description: Whether to link to the previous weekly issue when creating a new one
-  assignees: 
-    description: Assignees for the issue
+  
+  linked-comments-previous-issue-text:
+    description: |-
+      Text of the comment on the previous issue that links to the new issue.
+      Requires "linked-comments, labels".
+    default: 'Next in series: #{{ newIssueNumber }}'
     required: false
+  
+  linked-comments-new-issue-text:
+    description: |-
+      Text of the comment on the new issue that links to the previous issue.
+      Requires "linked-comments, labels".
+    default: 'Previous in series: #{{ previousIssueNumber }}'
+    required: false
+  
+  milestone:
+    description: |-
+      Milestone number (not ID or name) to add issue to, e.g. 2.
+    required: false
+  
+  project:
+    description: |-
+      Project number (not ID or name) to add issue to, e.g. 2.
+  
+  pinned: 
+    default: true
+    description: Whether the issue should be pinned.  
+    required: false
+    
+  rotate-assignees:
+    description: |-
+      Boolean whether to round robin the provided assignees, e.g. for first responder duties.
+      Requires "labels", "assignees".
+      default: 'false'
+      required: false
   token: 
     description: GitHub token
     required: true
     default: ${{ github.token }}
+  
+  project-type:
+    description: |-
+      Project type the "project" number corresponds to, e.g. user, organization, or repository project. 
+      Organization and user projects require a GitHub App installation access token, OAuth token, or Personal Access Token.
+      Read more here: https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards.
+      Defaults to "repository".
+    required: false
 outputs:
   date:
     description: The date of the issue
@@ -48,10 +100,16 @@ runs:
     - uses: imjohnbo/issue-bot@v3
       with:
         assignees: ${{ inputs.assignees }}
-        labels: ${{ inputs.labels }}
-        title: ${{ inputs.title }} for week of ${{ steps.date.outputs.date }}
         body: ${{ inputs.body }}
-        pinned: ${{ inputs.pinned }}
         close-previous: ${{ inputs.close-previous }}
+        column: ${{ inputs.column }}        
+        labels: ${{ inputs.labels }}
         linked-comments: ${{ inputs.linked-comments }}
+        linked-comments-new-issue-text: ${{ inputs.linked-comments-new-issue-text}}
+        linked-comments-previous-issue-text: ${{ inputs.linked-comments-previous-issue-text }}
+        milestone: ${{ inputs.milestone }}
+        pinned: ${{ inputs.pinned }}
+        project: ${{ inputs.project }}
+        rotate-assignees: ${{ inputs.rotate-assignees }}
+        title: ${{ inputs.title }} for week of ${{ steps.date.outputs.date }}
         token: ${{ inputs.token }}

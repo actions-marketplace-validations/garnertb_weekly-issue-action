@@ -1,6 +1,7 @@
 # weekly-issue-action
 
-Action that creates consistent Issues on different dates.
+Action that creates consistent GitHub issues on different dates.  Great for standardizing project management,
+scrum ceremonies, and other recurring tasks.
 
 ## Usage
 
@@ -22,7 +23,7 @@ Action that creates consistent Issues on different dates.
 
 ## Permissions
 
-The GitHub [token][token docs] needs to have `read:org` permissions to read organizational team members.
+The GitHub [token][token docs] needs to have `repo` permissions to create new issues.
 
 ## Scenerios
 
@@ -34,9 +35,12 @@ The GitHub [token][token docs] needs to have `read:org` permissions to read orga
 - id: create-issue
   uses: garnertb/weekly-issue-icon@v1
   with:
+    date-string: "this friday"
+    body: -|
+    \# Weekly sync 
+    title: Weekly sync ticket for ${{}}
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
-
 
 Use this action to set assignees for a new issue with [issue-bot](https://github.com/imjohnbo/issue-bot).
 

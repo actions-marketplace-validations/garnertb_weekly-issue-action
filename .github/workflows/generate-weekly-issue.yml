@@ -14,7 +14,9 @@ jobs:
         uses: garnertb/weekly-issue-action@master
         with: 
           date-string: "this friday"
+          title: Weely sync for ${{ steps.date.outputs.date  }}
           body: Weekly sync body
           token: ${{ secrets.github_token }}
+          
 
       
