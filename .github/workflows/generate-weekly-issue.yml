@@ -3,6 +3,7 @@ name: Generate Weekly Issue
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   build:
@@ -12,7 +13,7 @@ jobs:
       - name: Generate issue
         uses: garnertb/weekly-issue-action@master
         with: 
-          date-string: this friday
+          date-string: "this friday"
           body: This is a help
           token: ${{ secrets.github_token }}
 

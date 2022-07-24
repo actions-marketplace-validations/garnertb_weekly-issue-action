@@ -7,10 +7,10 @@ branding:
 inputs:
   date-string:
     description: Date string used to add the date to the title of the issue
-    default: this friday
+    default: "this friday"
     required: true
   title:
-    default: 'Weekly issue for week of <date>'
+    default: 'Weekly issue for week of '
     required: false
   labels:
     default: 'weekly-sync'
