@@ -5,20 +5,28 @@ branding:
   icon: 'users'  
   color: 'yellow'
 inputs:
-  issue_template:
-    description: Path to the issue template
-    required: true
   date_string:
     description: Date string used to add the date to the title of the issue
     default: this friday
     required: true
   title:
-    default: 'Weekly issue for week of '
+    default: 'Weekly issue for week of <date>'
+  assignees:
+    required: false
   labels:
     default: 'weekly-sync'
     required: false
   body:
     default: "Weekly sync issue for the week of ${{outputs.sdfsdf }}"
+  pinned: 
+    default: true
+    description: Whether the issue should be pinned.
+  close_previous:
+    default: true
+    description: Whether to close the previous weekly issue when creating new one
+  linked-comments:
+    default: true
+    description: Whether to link to the previous weekly issue when creating a new one
   assignees: 
     description: Assignees for the issue
     required: false
@@ -33,6 +41,7 @@ outputs:
 runs:
   using: composite
   steps:
+
     - name: get date
       id: date
       run: |
@@ -41,11 +50,11 @@ runs:
     - uses: imjohnbo/issue-bot@v3
       with:
         assignees: ${{ input.assignees }}
-        labels: ${{ steps.extract.outputs.labels }}
-        title: ${{ steps.extract.outputs.title }} for week of ${{ steps.date.outputs.date }}
-        body: ${{ steps.extract.outputs.body }}
-        pinned: true
-        close-previous: false
-        linked-comments: true
+        labels: ${{ input.labels }}
+        title: ${{ inputs.title }} for week of ${{ steps.date.outputs.date }}
+        body: ${{ inputs.body }}
+        pinned: ${{ inputs.pinned }}
+        close-previous: ${{ inputs.close_previous }}
+        linked-comments: ${{ inputs.linked=comments }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
