@@ -15,5 +15,7 @@ jobs:
         uses: garnertb/weekly-issue-action@master
         with: 
           date_string: this friday
+          token: ${{ GITHUB_TOKEN }}
+          body: This is a help
 
       

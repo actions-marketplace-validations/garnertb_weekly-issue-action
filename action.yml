@@ -33,18 +33,16 @@ inputs:
     required: true
     default: ${{ github.token }}
 outputs:
-  members:
-    description: GitHub logins of team members
-    value: ${{ steps.members.outputs.members }}
+  date:
+    description: The date of the issue
+    value: ${{ steps.date.outputs.date  }}
 runs:
   using: composite
   steps:
-
     - name: get date
       id: date
       run: |
         echo "::set-output name=date::$(date -d ${{inputs.date_string}} +"%m/%d/%Y")"
-
     - uses: imjohnbo/issue-bot@v3
       with:
         assignees: ${{ input.assignees }}
