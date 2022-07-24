@@ -44,7 +44,7 @@ runs:
       id: date
       shell: bash
       run: |
-        echo "::set-output name=date::$(date -d ${{inputs.date-string}} +"%m/%d/%Y")"
+        echo "::set-output name=date::$(date -d "${{inputs.date-string}}" +"%m/%d/%Y")"
     - uses: imjohnbo/issue-bot@v3
       with:
         assignees: ${{ inputs.assignees }}
