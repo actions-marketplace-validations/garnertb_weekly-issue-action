@@ -14,9 +14,7 @@ scrum ceremonies, and other recurring tasks.
     assignees: ''
     body: ''
     close-previous: ''
-    
-    
-    
+
     # Date string used to add the date to the title of the issue
     # eg: Weekly sync meeting for week of July, 4, 2014.
     # Default: `this friday`
