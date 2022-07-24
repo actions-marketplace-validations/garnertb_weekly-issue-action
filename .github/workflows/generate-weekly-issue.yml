@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate issue
-        uses: garnertb/weekly-issue-action@master
+        uses: garnertb/weekly-issue-action@main
         with: 
           date-string: "this friday"
           title: Weely sync for ${{ steps.date.outputs.date  }}
