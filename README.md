@@ -34,7 +34,6 @@ The GitHub [token][token docs] needs to have `read:org` permissions to read orga
 - id: create-issue
   uses: garnertb/weekly-issue-icon@v1
   with:
-    issue_template: './github/ISSUE_TEMPLATE/weekly-issue.md'
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
 

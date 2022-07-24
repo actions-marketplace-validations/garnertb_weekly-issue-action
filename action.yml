@@ -11,8 +11,6 @@ inputs:
     required: true
   title:
     default: 'Weekly issue for week of <date>'
-  assignees:
-    required: false
   labels:
     default: 'weekly-sync'
     required: false

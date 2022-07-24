@@ -1,0 +1,19 @@
+---
+name: Generate Weekly Issue
+
+on:
+  push:
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build:
+    name: Generate issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate issue
+        uses: garnertb/weekly-issue-action@master
+        with: 
+          date_string: this friday
+
+      
