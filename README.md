@@ -59,25 +59,3 @@ The GitHub [token][token docs] needs to have `repo` permissions to create new is
 ```
 
 In this example, the action will create an issue titled "Weekly sync for for week of MM/DD/YYYY".
-
-Use this action to set assignees for a new issue with [issue-bot](https://github.com/imjohnbo/issue-bot).
-
-```yaml
-- id: get-members
-  uses: garnertb/get-team-members@v1
-  with:
-    org: garnertb-io
-    team_slug: ops
-    role: maintainer
-    token: ${{ secrets.GITHUB_TOKEN }}
-
-- name: Create new issue
-  uses: imjohnbo/issue-bot@v3
-  with:
-    assignees: ${{ steps.get-members.outputs.members }}
-    title: Hello, world
-    body: |-
-      :wave: Hi, {{#each assignees}}@{{this}}{{#unless @last}}, {{/unless}}{{/each}}!
-```
-
-[token docs]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
