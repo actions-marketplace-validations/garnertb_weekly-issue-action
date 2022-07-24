@@ -101,7 +101,7 @@ runs:
       id: date
       shell: bash
       run: |
-        echo "::set-output name=date::$(date -d "${{inputs.date-string}}" +"${{date-string-format}}")"
+        echo "::set-output name=date::$(date -d "${{ inputs.date-string }}" +"${{ inputs.date-string-format }}")"
     - uses: imjohnbo/issue-bot@v3
       with:
         assignees: ${{ inputs.assignees }}
