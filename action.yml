@@ -16,7 +16,7 @@ inputs:
     default: 'weekly-sync'
     required: false
   body:
-    default: "Weekly sync issue for the week of ${{outputs.sdfsdf }}"
+    default: "Weekly sync issue"
   pinned: 
     default: true
     description: Whether the issue should be pinned.
