@@ -29,18 +29,36 @@ The GitHub [token][token docs] needs to have `repo` permissions to create new is
 
 ### Weekly Issue
 
-#### Create a weekly issue
+#### Create a weekly issue for a Friday meeting
 
 ```yaml
 - id: create-issue
   uses: garnertb/weekly-issue-icon@v1
   with:
+    # "This friday" gets passed to the gnu date command and the returned date 
+    # is accessible through the step output.
     date-string: "this friday"
-    body: -|
-    \# Weekly sync 
-    title: Weekly sync ticket for ${{}}
+    title: Weekly sync for ${{ steps.date.outputs.date  }}
+    body: |- 
+      ## Weekly Sync
+
+      <!-- Items actively working or blocked -->
+      ### In Progress
+
+      ### PRs Needing Review
+      <!-- Outstanding PRS -->
+
+      ### Security
+      <!-- Security-related Issues/PRS -->
+
+      ### Expenses
+      <!-- Image from AWS Cost Explorer -->
+
+      ### Deployments
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+In this example, the action will create an issue titled "Weekly sync for for week of MM/DD/YYYY".
 
 Use this action to set assignees for a new issue with [issue-bot](https://github.com/imjohnbo/issue-bot).
 

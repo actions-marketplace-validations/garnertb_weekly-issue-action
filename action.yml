@@ -25,6 +25,11 @@ inputs:
     default: "this friday"
     required: true
   
+  date-string-format:
+    description: The format passed to the date command
+    default: "%m/%d/%Y"
+    required: true
+  
   title:
     default: 'Weekly issue for week of '
     required: false
@@ -96,7 +101,7 @@ runs:
       id: date
       shell: bash
       run: |
-        echo "::set-output name=date::$(date -d "${{inputs.date-string}}" +"%m/%d/%Y")"
+        echo "::set-output name=date::$(date -d "${{inputs.date-string}}" +"${{date-string-format}}")"
     - uses: imjohnbo/issue-bot@v3
       with:
         assignees: ${{ inputs.assignees }}

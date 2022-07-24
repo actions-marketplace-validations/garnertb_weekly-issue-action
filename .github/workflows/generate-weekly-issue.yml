@@ -16,7 +16,7 @@ jobs:
           date-string: "this friday"
           title: Weely sync for ${{ steps.date.outputs.date  }}
           body: |- 
-            ## Weekly Update for week ending ${{ steps.date.outputs.date  }}
+            ## Weekly Update
 
             <!-- Items actively working or blocked -->
             ### In Progress
