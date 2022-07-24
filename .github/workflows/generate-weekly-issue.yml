@@ -2,9 +2,7 @@
 name: Generate Weekly Issue
 
 on:
-  push:
-  pull_request:
-    branches: [master, main]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,8 +12,8 @@ jobs:
       - name: Generate issue
         uses: garnertb/weekly-issue-action@master
         with: 
-          date_string: this friday
-          token: ${{ GITHUB_TOKEN }}
+          date-string: this friday
           body: This is a help
+          token: ${{ secrets.github_token }}
 
       

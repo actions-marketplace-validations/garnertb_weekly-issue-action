@@ -5,12 +5,13 @@ branding:
   icon: 'users'  
   color: 'yellow'
 inputs:
-  date_string:
+  date-string:
     description: Date string used to add the date to the title of the issue
     default: this friday
     required: true
   title:
     default: 'Weekly issue for week of <date>'
+    required: false
   labels:
     default: 'weekly-sync'
     required: false
@@ -52,5 +53,4 @@ runs:
         pinned: ${{ inputs.pinned }}
         close-previous: ${{ inputs.close_previous }}
         linked-comments: ${{ inputs.linked=comments }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
