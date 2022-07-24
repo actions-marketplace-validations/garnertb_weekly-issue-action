@@ -15,7 +15,22 @@ jobs:
         with: 
           date-string: "this friday"
           title: Weely sync for ${{ steps.date.outputs.date  }}
-          body: Weekly sync body
+          body: |- 
+            ## Weekly Update for week ending ${{ steps.date.outputs.date  }}
+
+            <!-- Items actively working or blocked -->
+            ### In Progress
+
+            ### PRs Needing Review
+            <!-- Outstanding PRS -->
+
+            ### Security
+            <!-- Security-related Issues/PRS -->
+
+            ### Expenses
+            <!-- Image from AWS Cost Explorer -->
+
+            ### Deployments
           token: ${{ secrets.github_token }}
           
 
