@@ -42,7 +42,7 @@ runs:
   steps:
     - name: get date
       id: date
-      shell: /bin/bash
+      shell: bash
       run: |
         echo "::set-output name=date::$(date -d ${{inputs.date_string}} +"%m/%d/%Y")"
     - uses: imjohnbo/issue-bot@v3
