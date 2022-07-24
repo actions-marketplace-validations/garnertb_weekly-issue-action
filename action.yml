@@ -20,7 +20,7 @@ inputs:
   pinned: 
     default: true
     description: Whether the issue should be pinned.
-  close_previous:
+  close-previous:
     default: true
     description: Whether to close the previous weekly issue when creating new one
   linked-comments:
@@ -52,6 +52,6 @@ runs:
         title: ${{ inputs.title }} for week of ${{ steps.date.outputs.date }}
         body: ${{ inputs.body }}
         pinned: ${{ inputs.pinned }}
-        close-previous: ${{ inputs.close_previous }}
-        linked-comments: ${{ inputs.linked=comments }}
+        close-previous: ${{ inputs.close-previous }}
+        linked-comments: ${{ inputs.linked-comments }}
         token: ${{ inputs.token }}
