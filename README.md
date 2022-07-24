@@ -1,6 +1,6 @@
 # weekly-issue-action
 
-Action that creates consistent GitHub issues on different dates.  Great for standardizing project management,
+This action can be used to create consistent GitHub issues on a schedule. Great for standardizing project management,
 scrum ceremonies, and other recurring tasks.
 
 > **warning**
@@ -11,12 +11,29 @@ scrum ceremonies, and other recurring tasks.
 ```yaml
 - uses: garnertb/weekly-issue-action@v1
   with:
-  
+    assignees: ''
+    body: ''
+    close-previous: ''
+    
+    
+    
     # Date string used to add the date to the title of the issue
     # eg: Weekly sync meeting for week of July, 4, 2014.
     # Default: `this friday`
     date_string: ''
-
+    
+    labels: ''
+    linked-comments: ''
+    linked-comments-new-issue-text: ''
+    linked-comments-previous-issue-text: ''
+    milestone: ''
+    pinned: ''
+    project: ''
+    rotate-assignees: ''
+    
+    # Title of the issue that is being created
+    # Defaults ot "
+    title: ''
 
     # Personal access token (PAT) used to fetch team members. 
     # Note the PAT must be entitled to at least `read:org` scope.
@@ -61,4 +78,7 @@ The GitHub [token][token docs] needs to have `repo` permissions to create new is
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-In this example, the action will create an issue titled "Weekly sync for for week of MM/DD/YYYY".
+In this example, the action will create an issue titled "Weekly sync for for week of [the date of Friday in MM/DD/YYYY]".
+
+
+[token docs]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
