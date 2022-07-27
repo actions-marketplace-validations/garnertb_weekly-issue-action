@@ -3,9 +3,6 @@
 This action can be used to create consistent GitHub issues on a schedule. Great for standardizing project management,
 scrum ceremonies, and other recurring tasks.
 
-> **warning**
-> This is a work in progress.
-
 ## Usage
 
 ```yaml
@@ -131,7 +128,10 @@ The GitHub [token][token docs] needs to have `repo` permissions to create new is
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-In this example, the action will create an issue titled "Weekly sync for for week of [the date of Friday in MM/DD/YYYY]".
+In this example, the action will create an issue titled "Weekly sync for for week of [the date of Friday in MM/DD/YYYY]".  See output 👇. 
+
+Produces: 
+<img width="1137" alt="Screen Shot 2022-07-27 at 13 48 39" src="https://user-images.githubusercontent.com/1141646/181359527-a600598c-603f-4c27-aa2c-2ddd2ebd2057.png">
 
 [token docs]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
   
