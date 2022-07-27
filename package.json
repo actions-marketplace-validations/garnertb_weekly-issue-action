@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.7"
+  }
+}

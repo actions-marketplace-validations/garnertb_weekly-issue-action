@@ -80,3 +80,89 @@ In this example, the action will create an issue titled "Weekly sync for for wee
 
 
 [token docs]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+```yaml
+- uses: garnertb/weekly-issue-action@v1
+  with: 
+  
+    # Assignees for the issue 
+    # Required: false
+    - assignees: '' 
+    
+    # Project column name to add issue to, e.g. To Do.
+    # Required if "project" is set. 
+    # Required: false
+    # Default: "Weekly sync issue" 
+    - body: ''
+    
+    # Whether to close the previous weekly issue when creating new one 
+    # Required: false
+    - close-previous: ''
+    
+    # Date string used to add the date to the title of the issue 
+    # Required: false
+    # Default: "this friday" 
+    - date-string: ''
+    
+    # The format passed to the date command 
+    # Required: false
+    # Default: "%m/%d/%Y" 
+    - date-string-format: ''
+    
+    # Required: false
+    # Default: "Weekly issue for week of " 
+    - title: ''
+    
+    # Comma delimited list of existing issue labels to be applied to new issue, e.g. "bug, ci". 
+    # Required: false
+    # Default: "weekly-sync" 
+    - labels: ''
+    
+    # Whether to link to the previous weekly issue when creating a new one 
+    # Required: 
+    # Default: "true" 
+    - linked-comments: ''
+    
+    # Text of the comment on the previous issue that links to the new issue.
+    # Requires "linked-comments, labels". 
+    # Required: false
+    # Default: "Next in series: #{{ newIssueNumber }}" 
+    - linked-comments-previous-issue-text: ''
+    
+    # Text of the comment on the new issue that links to the previous issue.
+    # Requires "linked-comments, labels". 
+    # Required: false
+    # Default: "Previous in series: #{{ previousIssueNumber }}" 
+    - linked-comments-new-issue-text: ''
+    
+    # Milestone number (not ID or name) to add issue to, e.g. 2. 
+    # Required: false
+    - milestone: ''
+    
+    # Project number (not ID or name) to add issue to, e.g. 2. 
+    # Required: false
+    - project: ''
+    
+    # Whether the issue should be pinned. 
+    # Required: false
+    # Default: "true" 
+    - pinned: ''
+
+    # Boolean whether to round robin the provided assignees, e.g. for first responder duties.
+    # Requires "labels", "assignees".
+    # default: 'false'
+    # Required: false
+    - rotate-assignees: ''
+
+    # GitHub token 
+    # Required: false
+    # Default: "${{ github.token }}" 
+    - token: ''
+    
+    # Project type the "project" number corresponds to, e.g. user, organization, or repository project. 
+    # Organization and user projects require a GitHub App installation access token, OAuth token, or Personal Access Token.
+    # Read more here: https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards. 
+    # Required: false
+    # Default: "repository" 
+    - project-type: ''
+  

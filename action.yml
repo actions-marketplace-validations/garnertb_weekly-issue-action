@@ -89,7 +89,7 @@ inputs:
       Project type the "project" number corresponds to, e.g. user, organization, or repository project. 
       Organization and user projects require a GitHub App installation access token, OAuth token, or Personal Access Token.
       Read more here: https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards.
-      Defaults to "repository".
+    default: "repository"
     required: false
 outputs:
   date:
