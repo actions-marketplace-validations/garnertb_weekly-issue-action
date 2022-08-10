@@ -103,7 +103,7 @@ The GitHub [token][token docs] needs to have `repo` permissions to create new is
 
 ```yaml
 - id: create-issue
-  uses: garnertb/weekly-issue-icon@v1
+  uses: garnertb/weekly-issue-action@v1
   with:
     # "This friday" gets passed to the gnu date command and the returned date 
     # is accessible through the step output.
